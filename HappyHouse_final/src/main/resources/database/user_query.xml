@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ssafy.happyhouse.model.dao.UserDao">
+
+	<insert id="userInsert" parameterType="com.ssafy.happyhouse.model.UserDto">
+		INSERT INTO USER (   USER_ID,   USER_NAME,   USER_PASSWORD,  USER_PHONE, USER_EMAIL ) 
+		             values (  #{userId}, #{userName}, #{userPassword}, #{userPhone}, #{userEmail} )
+	</insert>
+
+
+	<update id="userUpdate" parameterType="com.ssafy.happyhouse.model.UserDto">
+		UPDATE USER
+		   SET USER_ID = #{userId}, 
+		   USER_NAME   = #{userName}, 
+		   USER_PASSWORD =#{userPassword}, 
+		   USER_PHONE =#{userPhone}, 
+		   USER_EMAIL =#{userEmail} 
+		 WHERE USER_ID = #{userId} 
+		 AND USER_PASSWORD = #{userPassword} 
+	</update>
+	
+		<delete id="userDelete" parameterType="com.ssafy.happyhouse.model.UserDto">
+		DELETE FROM USER 
+		WHERE USER_ID = #{userId}
+		AND USER_PASSWORD= #{userPassword}
+	</delete>
+	
+	<select id="login" parameterType="string" resultType="com.ssafy.happyhouse.model.UserDto">
+		SELECT USER_ID, USER_SEQ, USER_NAME, USER_PASSWORD, USER_PHONE, USER_EMAIL
+		  FROM USER 
+		 WHERE USER_ID = #{userId}
+	</select>
+	
+</mapper>
+
+		

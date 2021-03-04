@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ssafy.happyhouse.model.dao.InterestDao">
+
+	<insert id="interestInsert" parameterType="com.ssafy.happyhouse.model.InterestDto">
+		INSERT INTO INTEREST (   USER_ID,   INTEREST_NAME, INTEREST_ADDRESS, INTEREST_FLOOR, INTEREST_AREA, INTEREST_DEAL_AMOUNT, INTEREST_DEPOSIT, INTEREST_MONTHLY_RENT, INTEREST_BUILD_YEAR ) 
+		             values (  #{userId}, #{interestName}, #{interestAddress}, #{interestFloor}, #{interestArea}, #{interestDealAmount},#{interestDeposit}, #{interestMonthlyRent}, #{interestBuildYear} )
+	</insert>
+
+	<select id="getInterestCount" parameterType="string" resultType="int">
+		SELECT COUNT(*)
+		  FROM INTEREST
+		 WHERE USER_ID = #{userId}
+	</select>
+	
+	<select id="interestDetail" parameterType="int" resultType="com.ssafy.happyhouse.model.InterestDto">
+		SELECT USER_ID, INTEREST_NAME, INTEREST_ADDRESS, INTEREST_FLOOR, INTEREST_AREA, INTEREST_DEPOSIT, INTEREST_MONTHLY_RENT, INTEREST_DEAL_AMOUNT, INTEREST_BUILD_YEAR
+		  FROM INTEREST 
+		 WHERE INTEREST_SEQ = #{interestSeq}
+	</select>
+	
+	<select id="interestList" parameterType="string" resultType="com.ssafy.happyhouse.model.InterestDto">
+		SELECT INTEREST_SEQ, USER_ID, INTEREST_NAME, INTEREST_ADDRESS, INTEREST_FLOOR, INTEREST_AREA, INTEREST_DEPOSIT, INTEREST_MONTHLY_RENT, INTEREST_DEAL_AMOUNT, INTEREST_BUILD_YEAR
+		  FROM INTEREST 
+		 WHERE USER_ID = #{userId}
+	</select>
+	
+	<delete id="interestDelete" parameterType="int">
+		DELETE FROM INTEREST
+		WHERE INTEREST_SEQ = #{interestSeq}
+	</delete>
+
+	
+</mapper>
+
+		
